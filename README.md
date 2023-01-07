@@ -1,5 +1,4 @@
 # TASS
-TASS project
 
 Skrypty do webscrappingu:
 1) airports.py - rating lotnisk

@@ -24,7 +24,7 @@ def validate_data():
         else:
             source_id = str(data.get_id_by_airport_name(list_of_airports, source))
             destination_id = str(data.get_id_by_airport_name(list_of_airports, destination))
-            return source_id, destination_id
+            return "BLOWJOB"
     else:
         tk.messagebox.showwarning(title="Error", message="Source and destination airports are required!")
 

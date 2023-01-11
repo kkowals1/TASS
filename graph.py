@@ -7,7 +7,7 @@ def create_graph() -> networkx.MultiGraph:
     sheet = wb.active
     l = []
     sheet_length = len(sheet['A'])
-    for i in range(2, sheet_length):
+    for i in range(2, sheet_length+1):
         c1 = sheet["C" + str(i)]
         c2 = sheet["E" + str(i)]
         l.append((c1.value, c2.value))

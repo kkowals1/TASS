@@ -1,7 +1,6 @@
 import networkx
 import openpyxl
 
-
 def create_graph() -> networkx.MultiGraph:
     wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\routes1.xlsx')
     sheet = wb.active
@@ -24,11 +23,9 @@ def create_graph() -> networkx.MultiGraph:
     return graph
 
 
-def find_route(given_graph: networkx.Graph, node1: str, node2: str) -> list:
-    test = networkx.all_shortest_paths(given_graph, source=node1, target=node2)
-    print([p for p in test])
-    return test
+
+def find_best_connection(given_graph: networkx.Graph, node1: str, node2: str, airlines: list, airports: list, routes: list) -> str:
+    paths = networkx.all_shortest_paths(given_graph, source=node1, target=node2)
 
 
-graph = create_graph()
-print(find_route(graph, 'DUS', 'BOD'))
+    return "HAHAH"

@@ -1,6 +1,17 @@
 import tkinter as tk
+import data
 from tkinter import ttk
 from tkinter import messagebox
+
+list_of_airports = data.create_list_of_airports()
+
+
+def list_of_airports_names():
+    l = []
+    for i in list_of_airports:
+        name = i.name
+        l.append(name)
+    return l
 
 
 def validate_data():
@@ -11,13 +22,15 @@ def validate_data():
         if source == destination:
             tk.messagebox.showwarning(title="Error", message="Source and destination airports cannot be the same!")
         else:
-            print("Source airport: ", source, "Destination airport: ", destination)
+            source_id = str(data.get_id_by_airport_name(list_of_airports, source))
+            destination_id = str(data.get_id_by_airport_name(list_of_airports, destination))
+            return source_id, destination_id
     else:
         tk.messagebox.showwarning(title="Error", message="Source and destination airports are required!")
 
 
-list_of_airports = ["Albert-Bray Airport", "Frankfurt am Main Airport", "Warsaw Chopin Airport"]
 result_value = "Albert-Bray Airport (Air France) -> Frankfurt am Main Airport (LOT) -> Warsaw Chopin Airport"
+
 window = tk.Tk()
 window.title("Flying App")
 
@@ -29,12 +42,12 @@ flight_params_frame = tk.LabelFrame(frame, text="Flight parameters")
 flight_params_frame.grid(row=0, column=0, padx=20, pady=10)
 
 source_airport_label = tk.Label(flight_params_frame, text="Source airport:")
-source_combobox = ttk.Combobox(flight_params_frame, values=list_of_airports)
+source_combobox = ttk.Combobox(flight_params_frame, values=list_of_airports_names())
 source_airport_label.grid(row=0, column=0)
 source_combobox.grid(row=1, column=0)
 
 destination_airport_label = tk.Label(flight_params_frame, text="Destination airport:")
-destination_combobox = ttk.Combobox(flight_params_frame, values=list_of_airports)
+destination_combobox = ttk.Combobox(flight_params_frame, values=list_of_airports_names())
 destination_airport_label.grid(row=0, column=1)
 destination_combobox.grid(row=1, column=1)
 

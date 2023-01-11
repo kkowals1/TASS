@@ -25,10 +25,10 @@ def create_graph() -> networkx.MultiGraph:
 
 
 def find_route(given_graph: networkx.Graph, node1: str, node2: str) -> list:
-    test = networkx.shortest_path(given_graph, source=node1, target=node2)
-    print(test)
+    test = networkx.all_shortest_paths(given_graph, source=node1, target=node2)
+    print([p for p in test])
     return test
 
 
 graph = create_graph()
-print(find_route(graph, 'NTE', 'CFU'))
+print(find_route(graph, 'DUS', 'BOD'))

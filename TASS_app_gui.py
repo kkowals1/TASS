@@ -37,8 +37,6 @@ def find_result():
 
             #OPCJA B (lepsze user experience)
             my_label.config(text=result)
-
-
     else:
         tk.messagebox.showwarning(title="Error", message="Source and destination airports are required!")
 

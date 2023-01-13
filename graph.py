@@ -28,9 +28,6 @@ def create_graph() -> networkx.MultiGraph:
     graph: networkx.MultiGraph = networkx.read_weighted_edgelist(
         r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\graph.txt',
         create_using=networkx.MultiGraph)
-    print("graph: ", graph)
-    print("nodes: ", graph.nodes)
-    print("edges: ", graph.edges)
     return graph
 
 
@@ -52,7 +49,6 @@ def find_best_connection(given_graph: networkx.Graph, node1: str, node2: str, ai
         if best_route_score <= result_score:
             best_route_score = result_score
             best_route_airlines = result_list
-            print("XDDDDD " + str(result_score) + " " + str(result_list))
             best_route_airlines = result_list
             best_route_airports = path
 
@@ -68,17 +64,14 @@ def calculate_route_score(airports_ids: list, airlines: list, airports: list, ro
         airports_score += float(score)
 
     airlines_on_route = []
-    print("AIrports ids:" + str(airports_ids) + str(len(airports_ids)))
 
     for i in range(0, len(airports_ids) - 1):
-        print(i)
         dest = airports_ids[i]
         src = airports_ids[i + 1]
         airlines_ids_set = data.get_airlines_by_destination_and_source(routes=routes, destination=dest,
                                                                        source=src)
         airlines_ids = list(airlines_ids_set)
         airline_id = str
-        print(airlines_ids)
         if len(airlines_ids) > 1:
             airline_id = find_best_airline(airlines_ids=airlines_ids, airlines=airlines)[0]
         else:
@@ -118,20 +111,18 @@ def prepare_result_string(airlines: list, score: str, airports: list, all_airlin
     airlines_counter = 0
     length = len(airport_names) + len(airline_names)
     for i in range(0, length):
-        print(i)
         if i % 2 == 0:
             to_return += airport_names[airports_counter]
             airports_counter += 1
-            print(str(airlines_counter) + " " + str(len(airline_names)))
             if airlines_counter != len(airport_names):
                 to_return += " - "
-            else:
-                to_return += "\n"
+
         else:
             to_return += airline_names[airlines_counter]
             airlines_counter += 1
             to_return += " -> "
 
+    to_return += "\n"
     to_return += "Route score: "
     to_return += str(score)
 

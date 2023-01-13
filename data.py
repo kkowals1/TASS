@@ -99,3 +99,10 @@ def get_airlines_by_destination_and_source(routes: list, destination: str, sourc
                 (str(route.source_id) == destination) and (str(route.destination_id) == source)):
             l.add(route.airline_id)
     return l
+
+
+def get_id_by_airport_name(airports: list, airport_name: str) -> str:
+    for airport in airports:
+        if str(airport.name) == airport_name:
+            return airport.airport_id
+    return -1.0

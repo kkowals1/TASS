@@ -9,14 +9,14 @@ class Airport:
 
 
 class Airline:
-    def __init__(self, airline_id: int, name: str, rating: int):
+    def __init__(self, airline_id: str, name: str, rating: int):
         self.airline_id = airline_id
         self.name = name
         self.rating = rating
 
 
 class Route:
-    def __init__(self, airline_id: int, destination_id: str, source_id: str):
+    def __init__(self, airline_id: str, destination_id: str, source_id: str):
         self.airline_id = airline_id
         self.destination_id = destination_id
         self.source_id = source_id
@@ -38,9 +38,16 @@ def create_list_of_airlines() -> list:
 
 def get_airline_rating_by_id(airlines: list, airline_id: str) -> float:
     for airline in airlines:
-        if str(airline.airport_id) == airline_id:
+        if str(airline.airline_id) == airline_id:
             return airline.rating
     return -1.0
+
+
+def get_airline_name_by_id(airlines: list, airline_id: str) -> str:
+    for airline in airlines:
+        if str(airline.airline_id) == airline_id:
+            return airline.name
+    return ""
 
 
 def create_list_of_airports() -> list:
@@ -64,6 +71,13 @@ def get_airport_rating_by_id(airports: list, airport_id: str) -> float:
     return -1.0
 
 
+def get_airport_name_by_id(airports: list, airport_id: str) -> str:
+    for airport in airports:
+        if str(airport.airport_id) == airport_id:
+            return airport.name
+    return ""
+
+
 def create_list_of_routes() -> list:
     wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\routes1.xlsx')
     sheet = wb.active
@@ -78,9 +92,10 @@ def create_list_of_routes() -> list:
     return l
 
 
-def get_airline_by_destination_and_source(routes: list, destination: str, source: str) -> list:
-    l = []
+def get_airlines_by_destination_and_source(routes: list, destination: str, source: str) -> list:
+    l = set()
     for route in routes:
-        if (route.source_id == source) and (route.destination_id == destination):
-            l.append(route.airline_id)
+        if ((str(route.source_id) == source) and (str(route.destination_id) == destination)) or (
+                (str(route.source_id) == destination) and (str(route.destination_id) == source)):
+            l.add(route.airline_id)
     return l

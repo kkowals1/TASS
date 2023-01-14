@@ -5,7 +5,7 @@ import openpyxl
 
 import tass.data as data
 
-ROUTES_FILE = r'files\routes1.xlsx'
+ROUTES_FILE = r'files\routes_filtered.xlsx'
 GRAPH_FILE = r'files\graph.txt'
 
 class RouteScore:

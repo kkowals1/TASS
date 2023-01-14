@@ -116,11 +116,12 @@ def prepare_result_string(airlines: list, score: str, airports: list, all_airlin
         if i % 2 == 0:
             to_return += airport_names[airports_counter]
             airports_counter += 1
-            if airlines_counter != len(airport_names):
-                to_return += " - "
+            to_return += " "
 
         else:
+            to_return += '('
             to_return += airline_names[airlines_counter]
+            to_return += ')'
             airlines_counter += 1
             to_return += " -> "
 

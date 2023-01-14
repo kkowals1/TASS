@@ -1,6 +1,10 @@
 import openpyxl
 
 
+AIRPORTS_FILE = r'airports_ratings.xlsx'
+AIRLINES_FILE = r'airlines_ratings.xlsx'
+ROUTES_FILE = r'routes1.xlsx'
+
 class Airport:
     def __init__(self, airport_id: str, rating: float, name: str):
         self.airport_id = airport_id
@@ -23,7 +27,7 @@ class Route:
 
 
 def create_list_of_airlines() -> list:
-    wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\airlines_ratings.xlsx')
+    wb = openpyxl.load_workbook(AIRLINES_FILE)
     sheet = wb.active
     l = []
     sheet_length = len(sheet['A'])
@@ -51,7 +55,7 @@ def get_airline_name_by_id(airlines: list, airline_id: str) -> str:
 
 
 def create_list_of_airports(routes: list[Route]) -> list:
-    wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\airports_ratings.xlsx')
+    wb = openpyxl.load_workbook(AIRPORTS_FILE)
     sheet = wb.active
     l = []
     sheet_length = len(sheet['A'])
@@ -80,7 +84,7 @@ def get_airport_name_by_id(airports: list, airport_id: str) -> str:
 
 
 def create_list_of_routes() -> list:
-    wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\routes1.xlsx')
+    wb = openpyxl.load_workbook(ROUTES_FILE)
     sheet = wb.active
     l = []
     sheet_length = len(sheet['A'])

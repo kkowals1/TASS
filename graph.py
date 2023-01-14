@@ -5,6 +5,7 @@ import openpyxl
 
 import data
 
+ROUTES_FILE = r'routes1.xlsx'
 
 class RouteScore:
     def __init__(self, score: float, airlines: list):
@@ -13,7 +14,7 @@ class RouteScore:
 
 
 def create_graph() -> networkx.MultiGraph:
-    wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\routes1.xlsx')
+    wb = openpyxl.load_workbook(ROUTES_FILE)
     sheet = wb.active
     l = []
     sheet_length = len(sheet['A'])

@@ -125,7 +125,8 @@ def prepare_result_string(airlines: list, score: str, airports: list, all_airlin
 
     to_return += "\n"
     to_return += "Route score: "
-    to_return += str(score)
+    formatted_score = '%.2f' % score
+    to_return += str(formatted_score)
 
     return to_return
 

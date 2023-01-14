@@ -1,9 +1,9 @@
 import openpyxl
 
-
 AIRPORTS_FILE = r'files\airports_ratings.xlsx'
 AIRLINES_FILE = r'files\airlines_ratings.xlsx'
 ROUTES_FILE = r'files\routes_filtered.xlsx'
+
 
 class Airport:
     def __init__(self, airport_id: str, rating: float, name: str):

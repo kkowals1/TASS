@@ -7,9 +7,9 @@ import graph
 
 graphik = graph.create_graph()
 # Stwórz listę objektów linii lotniczych, lotnisk oraz tras
-airlines = data.create_list_of_airlines()
-airports = data.create_list_of_airports()
 routes = data.create_list_of_routes()
+airlines = data.create_list_of_airlines()
+airports = data.create_list_of_airports(routes)
 
 
 def list_of_airports_names():

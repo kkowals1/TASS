@@ -50,7 +50,7 @@ def get_airline_name_by_id(airlines: list, airline_id: str) -> str:
     return ""
 
 
-def create_list_of_airports() -> list:
+def create_list_of_airports(routes: list[Route]) -> list:
     wb = openpyxl.load_workbook(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\airports_ratings.xlsx')
     sheet = wb.active
     l = []
@@ -59,8 +59,9 @@ def create_list_of_airports() -> list:
         name = sheet["B" + str(i)]
         rating = sheet["J" + str(i)]
         airport_id = sheet["A" + str(i)]
-        airport = Airport(airport_id=airport_id.value, name=name.value, rating=rating.value)
-        l.append(airport)
+        if check_if_airport_is_on_any_route(routes=routes, airport_id=airport_id.value):
+            airport = Airport(airport_id=airport_id.value, name=name.value, rating=rating.value)
+            l.append(airport)
     return l
 
 
@@ -90,6 +91,15 @@ def create_list_of_routes() -> list:
         route = Route(airline_id=airline_id.value, destination_id=destination.value, source_id=source.value)
         l.append(route)
     return l
+
+
+def check_if_airport_is_on_any_route(routes: list[Route], airport_id: str) -> bool:
+    for route in routes:
+        if route.destination_id == airport_id:
+            return True
+        elif route.source_id == airport_id:
+            return True
+    return False
 
 
 def get_airlines_by_destination_and_source(routes: list, destination: str, source: str) -> list:

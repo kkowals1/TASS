@@ -3,7 +3,7 @@ import requests
 import re
 import openpyxl
 
-wb = openpyxl.load_workbook(r'C:\Users\Karol\Desktop\airports.xlsx')
+wb = openpyxl.load_workbook(r'flight_data\airports.xlsx')
 sheet = wb.active
 
 temp=1
@@ -38,6 +38,6 @@ for i in range (1, 1124):
     destination = sheet[cell_write]
     destination.value=rating
 
-wb.save(r'C:\Users\Karol\Desktop\airports1.xlsx')
+wb.save(r'scrapping\airports1.xlsx')
 
 #"https://tickets.pl/avia/rating?search_str=" + adria

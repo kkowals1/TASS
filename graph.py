@@ -92,9 +92,10 @@ def find_best_airline(airlines_ids: list, airlines: list) -> Type[tuple]:
     for airline in airlines_ids:
         to_compare = data.get_airline_rating_by_id(airlines=airlines, airline_id=airline)
         if to_compare >= airline_score:
-            to_return = airline.airline_id
+            to_return = str(airline)
             airline_score = to_compare
-    return tuple[airline_score, to_return]
+    tup = (airline_score, to_return)
+    return tup
 
 
 def prepare_result_string(airlines: list, score: str, airports: list, all_airlines: list, all_airports: list) -> str:

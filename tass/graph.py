@@ -3,9 +3,10 @@ from typing import Type
 import networkx
 import openpyxl
 
-import data
+import tass.data as data
 
-ROUTES_FILE = r'routes1.xlsx'
+ROUTES_FILE = r'files\routes1.xlsx'
+GRAPH_FILE = r'files\graph.txt'
 
 class RouteScore:
     def __init__(self, score: float, airlines: list):
@@ -22,12 +23,12 @@ def create_graph() -> networkx.MultiGraph:
         c1 = sheet["D" + str(i)]
         c2 = sheet["F" + str(i)]
         l.append((c1.value, c2.value))
-    f = open(r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\graph.txt', 'w+')
+    f = open(GRAPH_FILE, 'w+')
     for item in l:
         f.write(str(item[0]) + " " + str(item[1]) + " 1" + "\n")
     f.close()
     graph: networkx.MultiGraph = networkx.read_weighted_edgelist(
-        r'C:\Users\jasie\STUDIA\TASS\projekt2\TASS\graph.txt',
+        GRAPH_FILE,
         create_using=networkx.MultiGraph)
     return graph
 

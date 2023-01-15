@@ -41,6 +41,7 @@ def find_best_routes(given_graph: networkx.Graph, node1: str, node2: str, ) -> s
 def find_best_connection(given_graph: networkx.Graph, node1: str, node2: str, airlines: list, airports: list,
                          routes: list) -> str:
     paths = list(networkx.all_shortest_paths(given_graph, source=node1, target=node2))
+    print(paths)
     best_route_airlines = []
     best_route_score = 0.0
     best_route_airports = []
@@ -104,6 +105,7 @@ def prepare_result_string(airlines: list, score: str, airports: list, all_airlin
     airline_names = []
     airport_names = []
     to_return = "Best route:\n"
+    counter = 0
     for airline in airlines:
         name = data.get_airline_name_by_id(airlines=all_airlines, airline_id=airline)
         airline_names.append(name)
@@ -118,16 +120,19 @@ def prepare_result_string(airlines: list, score: str, airports: list, all_airlin
             to_return += airport_names[airports_counter]
             airports_counter += 1
             to_return += " "
+            counter += 1
 
         else:
             to_return += '('
             to_return += airline_names[airlines_counter]
             to_return += ')'
             airlines_counter += 1
+            counter += 1
             to_return += " -> "
 
     to_return += "\n"
     to_return += "Route score: "
+    score = score/counter
     formatted_score = '%.2f' % score
     to_return += str(formatted_score)
 
